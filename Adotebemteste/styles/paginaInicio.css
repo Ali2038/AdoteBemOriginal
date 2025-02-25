@@ -8,7 +8,7 @@ body {
 
 /* Header */
 header {
-    background-color: #80ebe1; /* Verde escuro */
+    background-color: #0000CD; /* Verde escuro */
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -94,7 +94,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(50, 248, 215); /* Agora a 'caixa' inteira vai ter fundo amarelo */
+    background-color: #dee4eb; /* Agora a 'caixa' inteira vai ter fundo amarelo */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
