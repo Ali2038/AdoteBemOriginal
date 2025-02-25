@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adote um Amigo</title>
     <link rel="stylesheet" href="styles/Cadastro.css">
+
 </head>
 <body>
+
     <header>
         <div class="logo">
             <img src="img/dogo-argentino.png" alt="Logo da Adote um Amigo">
@@ -20,3 +22,79 @@
             </ul>
         </nav>
     </header>
+
+
+    <section id="cadastro">
+        <div class="toggle-buttons">
+            <button class="btn11" onclick="mostrarFormulario('adotante')">Cadastro Adotante</button>
+            <button class="btn11" onclick="mostrarFormulario('tutor')">Cadastro Tutor</button>
+        </div>
+        
+        <div id="form-adotante" class="formulario" style="display: block;">
+            <h2>Cadastro Adotante</h2>
+            <form>
+                <input type="text" placeholder="Nome" required>
+                <input type="text" placeholder="CPF" required>
+                <input type="tel" placeholder="Telefone" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="CEP" required>
+                <input type="text" placeholder="Estado" required>
+                <input type="text" placeholder="Cidade" required>
+                <input type="text" placeholder="Bairro" required>
+                <input type="text" placeholder="Endereço" required>
+                <input type="text" placeholder="Número" required>
+                <input type="text" placeholder="Complemento">
+                <input type="text" placeholder="UF" required>
+                <input type="password" placeholder="Senha" required>
+                <input type="password" placeholder="Confirmar Senha" required>
+                <button type="submit" class="btn11">Cadastrar</button>
+            </form>
+        </div>
+        
+        <div id="form-tutor" class="formulario" style="display: none;">
+            <h2>Cadastro Tutor</h2>
+            <form>
+                <input type="text" placeholder="Nome" required>
+                <input type="text" placeholder="CPF" required>
+                <input type="tel" placeholder="Telefone" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="CEP" required>
+                <input type="text" placeholder="Estado" required>
+                <input type="text" placeholder="Cidade" required>
+                <input type="text" placeholder="Bairro" required>
+                <input type="text" placeholder="Endereço" required>
+                <input type="text" placeholder="Número" required>
+                <input type="text" placeholder="Complemento">
+                <input type="text" placeholder="UF" required>
+                <input type="password" placeholder="Senha" required>
+                <input type="password" placeholder="Confirmar Senha" required>
+                
+                <h3>Cadastro do Animal</h3>
+                <input type="text" placeholder="Raça" required>
+                <input type="text" placeholder="Cor" required>
+                <input type="text" placeholder="Espécie" required>
+                <input type="text" placeholder="Situação de Saúde" required>
+                <input type="text" placeholder="Idade" required>
+                <input type="text" placeholder="Porte" required>
+                <input type="text" placeholder="Sexo" required>
+                <label>Imagem do Animal:</label>
+                <input type="file" required>
+                <label>Seu animal é vacinado?</label>
+                <select required>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+                <input type="text" placeholder="Se sim, quais?">
+                <button type="submit" class="btn11">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+
+
+
+<script src="js/Cadastro.js"></script>
+    
+</body>
+
+</html>
+
