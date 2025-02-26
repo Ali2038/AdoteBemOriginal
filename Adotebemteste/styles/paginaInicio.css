@@ -8,7 +8,7 @@ body {
 
 /* Header */
 header {
-    background-color: #0000CD; /* Verde escuro */
+    background-color: #20B2AA; /* Verde escuro */
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -35,14 +35,14 @@ nav ul li {
 }
 
 nav ul li a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    color: white;
+    color: #2F4F4F;
 }
 
 /* Botões */
