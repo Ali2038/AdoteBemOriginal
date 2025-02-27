@@ -7,7 +7,7 @@ body {
 
 /* Header */
 header {
-    background-color: #80ebe1;
+    background-color: #20B2AA;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -38,14 +38,14 @@ nav ul li {
 }
 
 nav ul li a {
-    color: black;
+    color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    color: white;
+    color: #2F4F4F;
 }
 
 /* Botões */
@@ -181,4 +181,23 @@ nav ul li a:hover {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #20B2AA;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2F4F4F;
 }
