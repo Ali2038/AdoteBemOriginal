@@ -12,49 +12,14 @@ Sistema dedicado à promoção da adoção responsável de animais de estimaçã
 ## Funcionalidades
 
 * Lista de funcionalidades principais do projeto.
-
-Login , Cadastro do Doador , Cadastro de Animais , Cadastro do Adotante , Catálogo de serviços .
-
 * Explicação de como cada funcionalidade beneficia o usuário ou resolve um problema.
-
-
-Login
-
-Permite que os usuários acessem suas contas de forma segura.
-Facilita o gerenciamento de informações e adoções.
-Garante que apenas usuários cadastrados possam interagir com certos recursos.
-
-Cadastro do Doador
-
-Permite que pessoas que desejam doar um animal registrem suas informações.
-Ajuda a conectar doadores com possíveis adotantes.
-Mantém um banco de dados organizado de pessoas que querem doar.
-
-
-Cadastro de Animais
-
-Facilita a listagem de animais disponíveis para adoção.
-Permite incluir informações essenciais como idade, raça, porte e situação de saúde.
-Ajuda adotantes a encontrarem o animal ideal de forma mais rápida e eficiente.
-
-Cadastro do Adotante
-
-Coleta informações dos adotantes para garantir um processo de adoção responsável.
-Permite contato entre doadores e adotantes para entrevistas e visitas.
-Garante que os animais sejam adotados por pessoas preparadas e confiáveis.
-
-
-Catálogo de Serviços
-
-Facilita a busca por serviços essenciais para o bem-estar dos pets.
-
 
 ## Tecnologias Utilizadas
 
 * Linguagens de programação (Html, Css e JavaScript).
 * Frameworks (Boostrap).
 * Bibliotecas (Bootstrap).
-* Ferramentas de desenvolvimento (Visual studio).
+* Ferramentas de desenvolvimento (Git).
 * Bancos de dados (MySQL).
 
 ## Como Executar o Projeto
@@ -86,7 +51,7 @@ Discussão sobre os principais desafios enfrentados durante o desenvolvimento e 
 
 ## Próximos Passos
 
-Ideias para aprimorar o projeto no futuro, como novas funcionalidades, otimizações ou correções de bugs.    
+Ideias para aprimorar o projeto no futuro, como novas funcionalidades, otimizações ou correções de bugs.
 
 ## Licença
 
@@ -95,5 +60,3 @@ Ideias para aprimorar o projeto no futuro, como novas funcionalidades, otimizaç
 ## Agradecimentos
 
 Agradecimentos a pessoas, organizações ou recursos que contribuíram para o projeto.
-
-quero que o senac , todo mundo vai tomar bem no meio do cu . moro?

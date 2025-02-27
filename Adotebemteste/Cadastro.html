@@ -35,18 +35,20 @@
         
         <div id="form-adotante" class="formulario" style="display: block;">
             <h2>Cadastro Adotante</h2>
-            <form>
-                <input type="text" placeholder="Nome" required>
-                <input type="text" placeholder="CPF" required>
-                <input type="date" placeholder="Nascimento" required>
-                <input type="tel" placeholder="Telefone" required>
-                <input type="email" placeholder="Email" required>
-                <input type="text" placeholder="CEP" required>
-                <input type="text" placeholder="Cidade" required>
-                <input type="text" placeholder="Bairro" required>
-                <input type="text" placeholder="Número" required>
-                <input type="text" placeholder="Complemento">
-                <input type="password" placeholder="Senha" required>
+            <form id="form-adotante-back">
+                <input type="text" placeholder="Nome" id="nome" required>
+                <input type="text" placeholder="CPF" id="cpf" required>
+                <input type="tel" placeholder="Telefone" id="telefone" required>
+                <input type="email" placeholder="Email" id="email" required>
+                <input type="text" placeholder="CEP" id="cep" required>
+                <input type="text" placeholder="Estado" id="estado" required>
+                <input type="text" placeholder="Cidade"id="cidade" required>
+                <input type="text" placeholder="Bairro" id="bairro" required>
+                <input type="text" placeholder="Endereço" id="endereco" required>
+                <input type="text" placeholder="Número" id="numero" required>
+                <input type="text" placeholder="Complemento"id="complemento">
+                <input type="text" placeholder="UF" id="uf" required>
+                <input type="password" placeholder="Senha" id="senha" required>
                 <input type="password" placeholder="Confirmar Senha" required>
                 <button type="submit" class="btn11">Cadastrar</button>
             </form>
@@ -55,20 +57,19 @@
         <div id="form-tutor" class="formulario" style="display: none;">
             <h2>Cadastro Tutor</h2>
             <form>
-                <input type="text" placeholder="Nome" required>
-                <input type="text" placeholder="CPF" required>
-                <input type="date" placeholder="Nascimento" required>
-                <input type="tel" placeholder="Telefone" required>
-                <input type="email" placeholder="Email" required>
-                <input type="text" placeholder="CEP" required>
-                <input type="text" placeholder="Estado" required>
-                <input type="text" placeholder="Cidade" required>
-                <input type="text" placeholder="Bairro" required>
-                <input type="text" placeholder="Endereço" required>
-                <input type="text" placeholder="Número" required>
-                <input type="text" placeholder="Complemento">
-                <input type="text" placeholder="UF" required>
-                <input type="password" placeholder="Senha" required>
+                <input type="text" placeholder="Nome" id="nome" required>
+                <input type="text" placeholder="CPF" id="cpf" required>
+                <input type="tel" placeholder="Telefone" id="telefone" required>
+                <input type="email" placeholder="Email" id="email" required>
+                <input type="text" placeholder="CEP" id="cep" required>
+                <input type="text" placeholder="Estado" id="estado" required>
+                <input type="text" placeholder="Cidade"id="cidade" required>
+                <input type="text" placeholder="Bairro" id="bairro" required>
+                <input type="text" placeholder="Endereço" id="endereco" required>
+                <input type="text" placeholder="Número" id="numero" required>
+                <input type="text" placeholder="Complemento"id="complemento">
+                <input type="text" placeholder="UF" id="uf" required>
+                <input type="password" placeholder="Senha" id="senha" required>
                 <input type="password" placeholder="Confirmar Senha" required>
                 
                 <h3>Cadastro do Animal</h3>
@@ -99,6 +100,32 @@
 
 <script src="js/Cadastro.js"></script>
     
+
+<!-- script para a api -->
+
+    <script>
+          document.getElementById('form-adotante-back').addEventListener('submit', async (e) => {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const cpf = document.getElementById('cpf').value;
+            const senha = document.getElementById('senha').value;
+
+            const res = await fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, cpf, telefone, email })
+            });
+
+            if (res.ok) {
+                alert('Cadastro realizado!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Erro ao cadastrar!');
+            }
+        });
+    </script>
 </body>
 
 </html>
