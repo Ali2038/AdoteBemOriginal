@@ -286,17 +286,19 @@ section {
 }
 
 #abrir-filtros {
-    background-color: #006400;
-    color: white;
+    background-color: white;
+    color: #006400;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    border: 1px solid #006400;
 }
 
 #abrir-filtros:hover {
-    background-color: #004d00;
+    color: white;
+    background-color: #137913;
 }
 
 .filtros {

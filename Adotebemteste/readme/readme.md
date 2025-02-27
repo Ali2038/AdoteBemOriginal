@@ -2,13 +2,12 @@
 
 ## Integrantes
 
-* Nome Completo do Aluno 1 - [GitHub do Aluno 1](link-para-github-aluno1)
-* Nome Completo do Aluno 2 - [GitHub do Aluno 2](link-para-github-aluno2)
-* Nome Completo do Aluno 3 - [GitHub do Aluno 3](link-para-github-aluno3)
+* Ali de Brito - [Ali2038](https://github.com/Ali2038)
+* Vinicius Prates - [Viniciusss1](https://github.com/Viniciusss1)
 
 ## Descrição do Projeto
 
-Uma descrição concisa do que o projeto faz, quais problemas ele resolve e qual é o seu objetivo principal.
+Sistema dedicado à promoção da adoção responsável de animais de estimação. Nosso objetivo principal é unir animais a lares amorosos, garantindo seu bem-estar e felicidade, além de facilitar a adoção de animais de estimação. 
 
 ## Funcionalidades
 
@@ -17,11 +16,11 @@ Uma descrição concisa do que o projeto faz, quais problemas ele resolve e qual
 
 ## Tecnologias Utilizadas
 
-* Linguagens de programação (ex: Python, JavaScript).
-* Frameworks (ex: React, Angular, Django).
-* Bibliotecas (ex: Pandas, NumPy, Bootstrap).
-* Ferramentas de desenvolvimento (ex: Git, Docker).
-* Bancos de dados (ex: MySQL, MongoDB).
+* Linguagens de programação (Html, Css e JavaScript).
+* Frameworks (Boostrap).
+* Bibliotecas (Bootstrap).
+* Ferramentas de desenvolvimento (Git).
+* Bancos de dados (MySQL).
 
 ## Como Executar o Projeto
 
