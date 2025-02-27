@@ -69,20 +69,87 @@ nav ul li a:hover {
 
 
 
+/* Transição suave para os formulários */
+.login-container {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Quando o formulário está oculto */
+.oculto {
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+    position: absolute;
+}
+
+/* Quando o formulário está visível */
+.mostrar {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+}
+
+/* Efeito na imagem ao trocar os formulários */
+.login-image {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Suaviza a imagem ao trocar os formulários */
+.troca-imagem {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+
+
+
+
 
 /* Estilização do Wrapper de Login */
+/* Container que envolve os formulários */
 .login-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height:  80vh; /* Faz ocupar toda a altura da tela */
+    height: 80vh;
     background: white;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 900px;
-    margin: 23px auto; /* Garante que fique no centro horizontal */
+    margin: 23px auto;
+    overflow: hidden;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Estilização do Login */
