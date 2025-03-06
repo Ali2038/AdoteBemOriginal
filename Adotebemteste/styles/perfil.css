@@ -143,3 +143,36 @@ footer a {
 footer a:hover {
     color: #2F4F4F;
 }
+
+
+/* Responsividade para telas pequenas */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column; /* Empilha os itens verticalmente */
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo img {
+        height: 40px; /* Logo menor em telas pequenas */
+    }
+
+    nav {
+        position: relative;
+        transform: none; /* Remove o ajuste de centralização para telas menores */
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-direction: column; /* Alinha os itens verticalmente */
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Espaçamento maior entre os itens no menu */
+    }
+
+    nav ul li a {
+        font-size: 20px; /* Fonte um pouco menor para telas pequenas */
+    }
+}
