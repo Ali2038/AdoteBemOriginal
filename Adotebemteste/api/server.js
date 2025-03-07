@@ -22,16 +22,42 @@ db.connect(err => {
 
 
 // Cadastro de usuário
-app.post('/register', (req, res) => {
-    const { nome, cpf, nascimento, telefone, email, senha } = req.body;
-    db.query('INSERT INTO usuarios (nome, cpf, nascimento, telefone, email, senha) VALUES (?, ?, ?, ?, ?, ?)',
-        [nome, cpf, nascimento, telefone, email, senha],
-        (err) => {
-            if (err) return res.status(500).json(err);
-            res.status(201).json({ message: 'Usuário cadastrado!' });
-        }
-    );
+app.post('/usuarios', (req, res) => {
+    const { nome, cpf, nascimento, telefone, email, senha, cep, cidade, bairro, numero, complemento } = req.body;
+
+    if (!nome || !cpf || !nascimento || !telefone || !email || !senha || !cep || !cidade || !bairro || !numero) {
+        return res.status(400).json({ message: 'Preencha todos os campos obrigatórios!' });
+    }
+
+    // Primeiro, cadastra o endereço
+    db.query('INSERT INTO endereco (cep, cidade, bairro, numero, complemento) VALUES (?, ?, ?, ?, ?)',
+        [cep, cidade, bairro, numero, complemento], (err, enderecoResult) => {
+            if (err) {
+                console.error('Erro ao cadastrar endereço:', err);
+                return res.status(500).json({ message: 'Erro ao cadastrar endereço.' });
+            }
+
+            // Pega o ID do endereço cadastrado
+            const id_endereco = enderecoResult.insertId;
+
+            // Agora, cadastra o usuário com o ID do endereço
+            db.query('INSERT INTO usuarios (nome, cpf, nascimento, telefone, email, senha, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                [nome, cpf, nascimento, telefone, email, senha, id_endereco], (err, userResult) => {
+                    if (err) {
+                        console.error('Erro ao cadastrar usuário:', err);
+                        return res.status(500).json({ message: 'Erro ao cadastrar usuário.' });
+                    }
+
+                    // Retorna o ID do usuário cadastrado
+                    res.status(201).json({ message: 'Usuário cadastrado com sucesso!', id_usuario: userResult.insertId });
+                });
+        });
 });
+
+
+
+
+
 
 
 // Cadastro de endereço
@@ -46,14 +72,51 @@ app.post('/endereco', (req, res) => {
     );
 });
 
+// Cadastro de animais
+app.post('/animais', (req, res) => {
+    const { nome_animal, saude, raca, especie, porte, sexo, idade, id_usuario } = req.body;
+
+    if (!nome_animal || !saude || !raca || !especie || !porte || !sexo || !idade || !id_usuario) {
+        return res.status(400).json({ message: 'Preencha todos os campos obrigatórios!' });
+    }
+
+    db.query('INSERT INTO animais (nome, saude, raca, especie, porte, sexo, idade, id_tutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [nome_animal, saude, raca, especie, porte, sexo, idade, id_usuario], (err) => {
+            if (err) {
+                console.error('Erro ao cadastrar animal:', err);
+                return res.status(500).json({ message: 'Erro ao cadastrar animal.' });
+            }
+
+            res.status(201).json({ message: 'Animal cadastrado com sucesso!' });
+        });
+});
+
+
+
 
 
 // Login de usuário
 app.post('/login', (req, res) => {
     const { email, senha } = req.body;
-    db.query('SELECT * FROM usuarios WHERE email = ? AND senha = ?', [email, senha], (err, results) => {
+
+    if (!email || !senha) {
+        return res.status(400).json({ message: 'Email e senha são obrigatórios!' });
+    }
+
+    db.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
         if (err) return res.status(500).json(err);
-        if (results.length === 0) return res.status(401).json({ message: 'Email ou senha incorretos!' });
+
+        if (results.length === 0) {
+            return res.status(401).json({ message: 'Email ou senha incorretos!' });
+        }
+
+        const usuario = results[0];
+
+        // Compara a senha (sem criptografia, apenas para exemplo)
+        if (usuario.senha !== senha) {
+            return res.status(401).json({ message: 'Email ou senha incorretos!' });
+        }
+
         res.json({ message: 'Login bem-sucedido!', redirect: 'index.html' });
     });
 });
@@ -62,7 +125,7 @@ app.post('/login', (req, res) => {
 
 // Listar usuários
 app.get('/usuarios', (req, res) => {
-    db.query('SELECT * FROM usuarios INNER JOIN endereco ON usuarios.id_usuario = endereco.id_endereco', (err, results) => {
+    db.query('SELECT * FROM usuarios INNER JOIN endereco ON usuarios.id_endereco = endereco.id_endereco', (err, results) => {
         if (err) return res.status(500).json(err);
         res.json(results);
     });
