@@ -45,3 +45,12 @@ function mostrarLogin() {
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login-container").classList.add("mostrar");
 });
+
+
+
+
+function loginUsuario() {
+    localStorage.setItem("usuarioLogado", true); // Salva o estado de login
+    window.location.href = "index.html"; // Redireciona para a página inicial
+}
+

@@ -176,3 +176,13 @@ footer a:hover {
         font-size: 20px; /* Fonte um pouco menor para telas pequenas */
     }
 }
+
+.user-logo {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-logo:hover {
+    transform: scale(1.1);
+}
+
