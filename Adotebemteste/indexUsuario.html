@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/paginaInicio.css">
     <link rel="stylesheet" href="fonteLetras/fonte.css">
     <link rel="stylesheet" href="js/script.js">
+    <link rel="stylesheet" href="indexUsuario.css">
 
 </head>
 <body>
@@ -21,14 +22,22 @@
                 <li><a href="indexUsuario.html">Início</a></li>
                 <li><a href="sobrenosUsuario.html">Sobre</a></li>
                 
-                <label  id="usuario1" >Cleiton rasta</label>
-                    <img src="img/user.png" alt="Usuário" class="rounded-circle" width="40" height="40">
-                </li>
+
+                <label for="">teste</label>
+                <img src="img/user.png" alt="Usuário" class="user-icon rounded-circle" width="40" height="40">
                 
+                <!-- Modal do Usuário -->
+                <div id="userDropdown" class="user-modal">
+                    <ul>
+                        <li><a href="#">Minha Conta</a></li>
+                        <li><a href="#">Detalhes da Conta</a></li>
+                        <li><a href="index.html">Sair</a></li>
+                    </ul>
+                </div>
                 
-            </ul>
         </nav>
     </header>
+
 
     
     <section id="inicio">
@@ -271,7 +280,17 @@
 </script>
 
 
-    <script src="js/script.js"></script>
+
+
+
+
+
+
+<script src="js/script.js"></script>
+
+
+
+    
     
 
 </body>

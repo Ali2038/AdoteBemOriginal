@@ -385,3 +385,61 @@ footer a:hover {
 #usuario1 {
     color: #2c2e1f;
 }
+
+
+
+/* Estilo do dropdown/modal do usuário */
+.user-modal {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 160px;
+    top: 65px; /* Alterado de 50px para 65px para dar mais espaço */
+    right: 10px;
+    z-index: 1000;
+    padding: 0;
+}
+
+
+/* Garantindo que os itens fiquem um abaixo do outro */
+.user-modal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Faz os itens ficarem em coluna (um abaixo do outro) */
+}
+
+/* Ajusta os itens */
+.user-modal ul li {
+    width: 100%; /* Faz com que cada item ocupe toda a largura do dropdown */
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Linha entre os itens */
+}
+
+/* Remove a linha do último item */
+.user-modal ul li:last-child {
+    border-bottom: none;
+}
+
+.user-modal ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+}
+
+.user-modal ul li a:hover {
+    background: #f4f4f4;
+}
+
+/* Estilo para a imagem do usuário */
+.user-icon {
+    cursor: pointer;
+    position: relative;
+}

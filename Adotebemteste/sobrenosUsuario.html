@@ -20,11 +20,23 @@
                 
 
                 <label for="">teste</label>
-                <img src="img/user.png" alt="Usuário" class="rounded-circle" width="40" height="40">
-            </li>
-            </ul>
+                <img src="img/user.png" alt="Usuário" class="user-icon rounded-circle" width="40" height="40">
+                
+                <!-- Modal do Usuário -->
+                <div id="userDropdown" class="user-modal">
+                    <ul>
+                        <li><a href="#">Minha Conta</a></li>
+                        <li><a href="#">Detalhes da Conta</a></li>
+                        <li><a href="index.html">Sair</a></li>
+                    </ul>
+                </div>
+                
         </nav>
     </header>
+
+
+
+    
 
     <!-- Seção Sobre Nós -->
     <section id="sobre">
@@ -54,13 +66,6 @@
 
 
 
-    
-
-
-
-
-
-
     <!-- botoes de evento on click -->
      
     
@@ -78,6 +83,29 @@
   document.getElementById("meuBotao").addEventListener("click", function() {
     window.location.href = "Cadastro.html";
   });
+</script>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var userIcon = document.querySelector(".user-icon");
+        var userDropdown = document.getElementById("userDropdown");
+
+        // Exibir/Ocultar o modal ao clicar na imagem do usuário
+        userIcon.addEventListener("click", function(event) {
+            event.stopPropagation(); // Impede que o clique feche imediatamente o modal
+            userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
+        });
+
+        // Fechar o modal ao clicar fora dele
+        document.addEventListener("click", function(event) {
+            if (!userDropdown.contains(event.target) && event.target !== userIcon) {
+                userDropdown.style.display = "none";
+            }
+        });
+    });
 </script>
 
     
