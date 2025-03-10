@@ -97,14 +97,20 @@ app.post('/animais', (req, res) => {
 
 // Login de usuário
 app.post('/login', (req, res) => {
+    // Desestruturando o email e senha da requisição
     const { email, senha } = req.body;
 
+    // Verificando se o email e a senha foram enviados
     if (!email || !senha) {
         return res.status(400).json({ message: 'Email e senha são obrigatórios!' });
     }
 
-    db.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
-        if (err) return res.status(500).json(err);
+    // Realizando a consulta no banco de dados
+    db.query('SELECT * FROM usuarios WHERE email = ? AND senha = ?', [email, senha], (err, results) => {
+        if (err) {
+            console.error(err);  // Para registrar o erro no console, se houver.
+            return res.status(500).json({ message: 'Erro no banco de dados' });
+        }
 
         if (results.length === 0) {
             return res.status(401).json({ message: 'Email ou senha incorretos!' });
@@ -113,13 +119,16 @@ app.post('/login', (req, res) => {
         const usuario = results[0];
 
         // Compara a senha (sem criptografia, apenas para exemplo)
-        if (usuario.senha !== senha) {
+        if (usuario.senha !== senha || usuario.email !== email) {
             return res.status(401).json({ message: 'Email ou senha incorretos!' });
         }
 
-        res.json({ message: 'Login bem-sucedido!', redirect: 'index.html' });
+        // Caso tudo esteja certo
+        res.json({ message: 'Login bem-sucedido!', redirect: 'indexUsuario.html' });
     });
 });
+
+
 
 
 
