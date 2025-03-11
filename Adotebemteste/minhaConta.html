@@ -82,35 +82,6 @@
                 userFieldsContainer.appendChild(div);
             });
             
-            // Função para carregar os dados do usuário
-            function loadUserData() {
-                fetch(`http://localhost:3000/usuarios/email?email=${emailUsuario}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Dados do usuário:", data);
-                    if (data.message) {
-                        alert(data.message);  // Exibe a mensagem de erro caso o usuário não tenha sido encontrado
-                        return;
-                    }
-
-                    userFields.forEach(field => {
-                        // Usa o nome do campo no retorno dos dados (sem a parte "user")
-                        const fieldId = field.id.replace('user', '').toLowerCase();
-                        if (data[fieldId]) {
-                            document.getElementById(field.id).value = data[fieldId];
-                        }
-                    });
-                })
-                .catch(err => console.error('Erro ao carregar dados do usuário:', err));
-            }
-
-            // Chama a função para carregar os dados do usuário
-            loadUserData();
         });
     </script>
 </body>
