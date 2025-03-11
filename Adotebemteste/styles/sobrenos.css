@@ -200,6 +200,10 @@ footer a:hover {
     color: #2F4F4F;
 }
 
+footer p {
+    color: white;
+}
+
 
 /* Estilo do dropdown/modal do usuário */
 .user-modal {

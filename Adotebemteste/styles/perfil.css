@@ -186,3 +186,29 @@ footer a:hover {
     transform: scale(1.1);
 }
 
+
+/* Caixa de manifestou interesse em adotar */
+/* Estilo da mensagem de sucesso */
+.success-message {
+    display: none; /* Inicialmente oculta */
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    max-width: 50em;
+    margin: 20px auto; /* Centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto */
+}
+
+.success-message i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.success-message span {
+    font-size: 16px;
+}
