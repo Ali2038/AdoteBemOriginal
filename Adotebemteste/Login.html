@@ -82,33 +82,36 @@
 
 
 <script>
-      document.getElementById('form-login').addEventListener('submit', async (e) => {
+   document.getElementById('form-login').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Login
-    const email =  document.getElementById('email').value;
+    const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
-    
 
     try {
-        // Cadastrar o endereço primeiro
+        // Enviar a solicitação de login para o back-end
         const resLogin = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, senha })
         });
 
-        if (!resLogin.ok) {
-            throw new Error('Erro ao realizar login: ' + 'Usuário ou senha inválidos.');
-        }
-       
+        const data = await resLogin.json();
 
-        // Exibir o modal de sucesso
-        console.log('Login efetuado com sucesso!')
+        if (!resLogin.ok) {
+            throw new Error(data.message || 'Erro ao realizar login');
+        }
+
+        // Salvar o nome do usuário e a mensagem de sucesso
+        const nomeUsuario = data.nome_usuario;
+        console.log('Login efetuado com sucesso! Nome do usuário:', nomeUsuario);
+
+        // Salvar o nome do usuário no sessionStorage para acessá-lo em outras páginas
+        sessionStorage.setItem('nome_usuario', nomeUsuario);
 
         // Redirecionar após 2 segundos
         setTimeout(() => {
-            window.location.href = 'indexUsuario.html';
+            window.location.href = data.redirect;
         }, 2000);
 
     } catch (error) {
@@ -116,6 +119,7 @@
         alert(error.message);
     }
 });
+
 </script>
 
 </body>

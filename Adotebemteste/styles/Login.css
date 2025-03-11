@@ -175,6 +175,7 @@ footer a:hover {
 
 /* Responsividade para telas pequenas */
 @media screen and (max-width: 768px) {
+
     header {
         flex-direction: column; /* Empilha os itens verticalmente */
         align-items: center;

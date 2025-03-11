@@ -93,22 +93,17 @@ app.post('/animais', (req, res) => {
 
 
 
-
-
 // Login de usuário
 app.post('/login', (req, res) => {
-    // Desestruturando o email e senha da requisição
     const { email, senha } = req.body;
 
-    // Verificando se o email e a senha foram enviados
     if (!email || !senha) {
         return res.status(400).json({ message: 'Email e senha são obrigatórios!' });
     }
 
-    // Realizando a consulta no banco de dados
     db.query('SELECT * FROM usuarios WHERE email = ? AND senha = ?', [email, senha], (err, results) => {
         if (err) {
-            console.error(err);  // Para registrar o erro no console, se houver.
+            console.error(err);  
             return res.status(500).json({ message: 'Erro no banco de dados' });
         }
 
@@ -118,15 +113,23 @@ app.post('/login', (req, res) => {
 
         const usuario = results[0];
 
+        // Separa o nome completo e pega apenas o primeiro nome
+        const primeiroNome = usuario.nome.split(' ')[0];  // Pega a primeira parte do nome
+
         // Compara a senha (sem criptografia, apenas para exemplo)
         if (usuario.senha !== senha || usuario.email !== email) {
             return res.status(401).json({ message: 'Email ou senha incorretos!' });
         }
 
-        // Caso tudo esteja certo
-        res.json({ message: 'Login bem-sucedido!', redirect: 'indexUsuario.html' });
+        // Envia o primeiro nome do usuário junto com a mensagem de sucesso
+        res.json({
+            message: 'Login bem-sucedido!',
+            nome_usuario: primeiroNome,  // Envia apenas o primeiro nome
+            redirect: 'indexUsuario.html'
+        });
     });
 });
+
 
 
 
