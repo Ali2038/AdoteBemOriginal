@@ -34,8 +34,7 @@
         <section id="dadosUsuario">
             <h1>Minha Conta</h1>
             <form id="userForm">
-                <div class="input-group" id="userFields">
-                </div>
+                <div class="input-group" id="userFields"></div>
                 <button type="button" id="saveChanges" style="display:none;">Salvar Alterações</button>
             </form>
         </section>
@@ -48,6 +47,14 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Pega o email do usuário do sessionStorage
+            const emailUsuario = sessionStorage.getItem('email_usuario');
+            
+            if (!emailUsuario) {
+                alert("Usuário não autenticado!");
+                return;
+            }
+
             const userFields = [
                 { id: "userName", label: "Nome", type: "text" },
                 { id: "userCPF", label: "CPF", type: "text" },
@@ -75,51 +82,34 @@
                 userFieldsContainer.appendChild(div);
             });
             
-            var userIcon = document.querySelector(".user-icon");
-            var userDropdown = document.getElementById("userDropdown");
-            var saveButton = document.getElementById("saveChanges");
-            var editIcons = document.querySelectorAll(".edit-icon");
-            
-            userIcon.addEventListener("click", function(event) {
-                event.stopPropagation();
-                userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
-            });
-            
-            document.addEventListener("click", function(event) {
-                if (!userDropdown.contains(event.target) && event.target !== userIcon) {
-                    userDropdown.style.display = "none";
-                }
-            });
-            
+            // Função para carregar os dados do usuário
             function loadUserData() {
-                var usuario = JSON.parse(localStorage.getItem("usuario")) || {};
-                userFields.forEach(field => {
-                    document.getElementById(field.id).value = usuario[field.id] || "";
-                });
+                fetch(`http://localhost:3000/usuarios/email?email=${emailUsuario}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Dados do usuário:", data);
+                    if (data.message) {
+                        alert(data.message);  // Exibe a mensagem de erro caso o usuário não tenha sido encontrado
+                        return;
+                    }
+
+                    userFields.forEach(field => {
+                        // Usa o nome do campo no retorno dos dados (sem a parte "user")
+                        const fieldId = field.id.replace('user', '').toLowerCase();
+                        if (data[fieldId]) {
+                            document.getElementById(field.id).value = data[fieldId];
+                        }
+                    });
+                })
+                .catch(err => console.error('Erro ao carregar dados do usuário:', err));
             }
-            
-            editIcons.forEach(icon => {
-                icon.addEventListener("click", function() {
-                    var targetInput = document.getElementById(this.dataset.target);
-                    targetInput.removeAttribute("readonly");
-                    targetInput.focus();
-                    saveButton.style.display = "block";
-                });
-            });
-            
-            saveButton.addEventListener("click", function() {
-                var usuario = {};
-                userFields.forEach(field => {
-                    usuario[field.id] = document.getElementById(field.id).value;
-                });
-                localStorage.setItem("usuario", JSON.stringify(usuario));
-                alert("Dados salvos com sucesso!");
-                saveButton.style.display = "none";
-                userFields.forEach(field => {
-                    document.getElementById(field.id).setAttribute("readonly", true);
-                });
-            });
-            
+
+            // Chama a função para carregar os dados do usuário
             loadUserData();
         });
     </script>

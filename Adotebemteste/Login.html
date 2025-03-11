@@ -17,10 +17,9 @@
             <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobrenos.html">Sobre</a></li>
-                <li> <button class="btn"    onclick="window.location.href='Login.html'"   ><i class="fas fa-sign-in-alt"></i> Entrar</button></li>
-                <li><button class="btn"  onclick="window.location.href='Cadastro.html'"  ><i class="fas fa-user-plus"></i> Cadastre-se</button></li>
+                <li> <button class="btn" onclick="window.location.href='Login.html'"><i class="fas fa-sign-in-alt"></i> Entrar</button></li>
+                <li><button class="btn" onclick="window.location.href='Cadastro.html'"><i class="fas fa-user-plus"></i> Cadastre-se</button></li>
             </ul>
-
         </nav>
     </header>
 
@@ -30,13 +29,11 @@
         <div class="login-container">
             <h2>Login</h2>
             <form action="#" method="POST" id="form-login">
-
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" required>
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required>
                 <button type="submit" class="btn-login">Entrar</button>
-
             </form>
             <a href="#" class="forgot-password">Esqueci minha senha</a>
         </div>
@@ -50,79 +47,53 @@
         </div>
     </div>
 
-
     <footer>
         <p>&copy; 2023 Adote um Amigo. Todos os direitos reservados.</p>
         <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
     </footer>
 
-    
-
-
-
-
-    <!-- botoes de evento on click -->
-     
-    
-
     <script>
-      document.getElementById("meuBotao").addEventListener("click", function() {
-        window.location.href = "Login.html";
-      });
-    </script>
+        document.getElementById('form-login').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
 
+            try {
+                const resLogin = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
 
+                const data = await resLogin.json();
 
-<script>
-  document.getElementById("meuBotao").addEventListener("click", function() {
-    window.location.href = "Cadastro.html";
-  });
-</script>
+                if (!resLogin.ok) {
+                    throw new Error(data.message || 'Erro ao realizar login');
+                }
 
+                const emailUsuario = data.email_usuario;
+                const nomeUsuario = data.nome_usuario;
+                console.log('Login efetuado com sucesso! Nome do usuário:', nomeUsuario);
 
-<script>
-   document.getElementById('form-login').addEventListener('submit', async (e) => {
-    e.preventDefault();
+                // Salvar no sessionStorage
+                sessionStorage.setItem('nome_usuario', nomeUsuario);
+                sessionStorage.setItem('email_usuario', emailUsuario);
 
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
+                setTimeout(() => {
+                    window.location.href = data.redirect;
+                }, 2000);
+            } catch (error) {
+                console.error(error);
 
-
-    try {
-        // Enviar a solicitação de login para o back-end
-        const resLogin = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, senha })
+                // Exibe erro no login
+                const errorMessage = document.createElement('p');
+                errorMessage.style.color = 'red';
+                errorMessage.textContent = error.message || 'Erro ao realizar login';
+                document.querySelector('.login-container').appendChild(errorMessage);
+            }
         });
-
-        const data = await resLogin.json();
-
-        if (!resLogin.ok) {
-            throw new Error(data.message || 'Erro ao realizar login');
-        }
-
-        // Salvar o nome do usuário e a mensagem de sucesso
-        const nomeUsuario = data.nome_usuario;
-        console.log('Login efetuado com sucesso! Nome do usuário:', nomeUsuario);
-
-        // Salvar o nome do usuário no sessionStorage para acessá-lo em outras páginas
-        sessionStorage.setItem('nome_usuario', nomeUsuario);
-        
-
-        // Redirecionar após 2 segundos
-        setTimeout(() => {
-            window.location.href = data.redirect;
-        }, 2000);
-
-    } catch (error) {
-        console.error(error);
-        alert(error.message);
-    }
-});
-
-</script>
+    </script>
 
 </body>
 </html>

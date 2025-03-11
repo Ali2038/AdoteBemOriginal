@@ -180,15 +180,24 @@ button:hover {
     }
 }
 
-/* Footer fixo */
+/* Footer */
 footer {
     background-color: #20B2AA;
     color: white;
     text-align: center;
     padding: 10px 0;
-    width: 100%;
+    margin-top: 40px;
 }
 
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2F4F4F;
+}
 
 .edit-icon {
     position: absolute;

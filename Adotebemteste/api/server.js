@@ -133,8 +133,6 @@ app.post('/login', (req, res) => {
 
 
 
-
-
 // Listar usuários
 app.get('/usuarios', (req, res) => {
     db.query('SELECT * FROM usuarios INNER JOIN endereco ON usuarios.id_endereco = endereco.id_endereco', (err, results) => {
@@ -142,6 +140,51 @@ app.get('/usuarios', (req, res) => {
         res.json(results);
     });
 });
+
+// Rota para obter os dados do usuário pelo email
+app.get('/usuarios/email', (req, res) => {
+    const { email } = req.query;
+
+    if (!email) {
+        return res.status(400).json({ message: 'Email é obrigatório!' });
+    }
+
+    db.query(
+        'SELECT usuarios.*, endereco.* FROM usuarios INNER JOIN endereco ON usuarios.id_endereco = endereco.id_endereco WHERE usuarios.email = ?',
+        [email],
+        (err, results) => {
+            if (err) return res.status(500).json({ message: 'Erro ao buscar dados do usuário', error: err });
+
+            if (results.length === 0) {
+                return res.status(404).json({ message: 'Usuário não encontrado!' });
+            }
+
+            const usuario = results[0]; // Pega o primeiro usuário encontrado
+
+            // Organize os dados para retornar um formato mais amigável
+            const usuarioResponse = {
+                id_usuario: usuario.id_usuario,
+                nome: usuario.nome,
+                cpf: usuario.cpf,
+                nascimento: usuario.nascimento,
+                telefone: usuario.telefone,
+                email: usuario.email,
+                endereco: {
+                    cep: usuario.cep,
+                    cidade: usuario.cidade,
+                    bairro: usuario.bairro,
+                    numero: usuario.numero,
+                    complemento: usuario.complemento
+                }
+            };
+
+            res.json(usuarioResponse); // Retorna o usuário e o endereço de forma organizada
+        }
+    );
+});
+
+
+
 
 
 
