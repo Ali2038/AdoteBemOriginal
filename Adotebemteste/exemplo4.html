@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Detalhes do Animal</title>
-    <script src="js/script.js"></script>
+    <title>Adote um Amigo</title>
+    <link rel="stylesheet" href="styles/sobrenos.css">
+    <link rel="stylesheet" href="fonteLetras/fonte.css">
     <link rel="stylesheet" href="styles/perfil.css">
 </head>
 <body>
-
     <header>
         <div class="logo">
             <img src="img/dogo-argentino.png" alt="Logo da Adote um Amigo">
@@ -21,20 +20,23 @@
                 <li><a href="sobrenosUsuario.html">Sobre</a></li>
                 
 
-                <label for="" style="color: rgb(250, 244, 244);">Olá, usuário</label>
+                <label for="" style="color: rgb(250, 244, 244);">Olá, <label for="" id="nome-usuario">usuário</label></label>
                 <img src="img/user.png" alt="Usuário" class="user-icon rounded-circle" width="40" height="40">
                 
                 <!-- Modal do Usuário -->
                 <div id="userDropdown" class="user-modal">
                     <ul>
-                        <li><a href="#">Minha Conta</a></li>
-                        <li><a href="#">Detalhes da Conta</a></li>
+                        <li><a href="minhaConta.html">Minha Conta</a></li>
                         <li><a href="index.html">Sair</a></li>
                     </ul>
                 </div>
                 
         </nav>
     </header>
+
+
+
+    
 
     <section id="detalhes-animal">
         <h2>Detalhes do Animal</h2>
@@ -62,7 +64,10 @@
         
     </section>
 
-    
+
+
+
+
     <footer>
         <p>&copy; 2023 Adote um Amigo. Todos os direitos reservados.</p>
         <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
@@ -70,9 +75,10 @@
 
 
 
+
     <!-- botoes de evento on click -->
      
-
+    
 
     <script>
       document.getElementById("meuBotao").addEventListener("click", function() {
@@ -81,11 +87,39 @@
     </script>
 
 
+
+
 <script>
   document.getElementById("meuBotao").addEventListener("click", function() {
     window.location.href = "Cadastro.html";
   });
 </script>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var userIcon = document.querySelector(".user-icon");
+        var userDropdown = document.getElementById("userDropdown");
+
+        // Exibir/Ocultar o modal ao clicar na imagem do usuário
+        userIcon.addEventListener("click", function(event) {
+            event.stopPropagation(); // Impede que o clique feche imediatamente o modal
+            userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
+        });
+
+        // Fechar o modal ao clicar fora dele
+        document.addEventListener("click", function(event) {
+            if (!userDropdown.contains(event.target) && event.target !== userIcon) {
+                userDropdown.style.display = "none";
+            }
+        });
+    });
+</script>
+
+
+
 
 <script>
     document.getElementById("btn-adotar").addEventListener("click", function() {
@@ -96,6 +130,8 @@
         }, 10);
     });
 </script>
+    
+
 
 
 </body>
