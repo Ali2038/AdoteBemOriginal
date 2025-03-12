@@ -116,16 +116,19 @@ app.post('/login', (req, res) => {
         // Separa o nome completo e pega apenas o primeiro nome
         const primeiroNome = usuario.nome.split(' ')[0];  // Pega a primeira parte do nome
 
+        // Compara a senha (sem criptografia, apenas para exemplo)
+        if (usuario.senha !== senha || usuario.email !== email) {
+            return res.status(401).json({ message: 'Email ou senha incorretos!' });
+        }
+
         // Envia o primeiro nome do usuário junto com a mensagem de sucesso
         res.json({
             message: 'Login bem-sucedido!',
             nome_usuario: primeiroNome,  // Envia apenas o primeiro nome
-            email_usuario: usuario.email, // Retorna o e-mail do usuário
             redirect: 'indexUsuario.html'
         });
     });
 });
-
 
 
 
@@ -138,7 +141,6 @@ app.get('/usuarios', (req, res) => {
     });
 });
 
-
 // Rota para obter os dados do usuário pelo email
 app.get('/usuarios/email', (req, res) => {
     const { email } = req.query;
@@ -148,7 +150,7 @@ app.get('/usuarios/email', (req, res) => {
     }
 
     db.query(
-        'SELECT * FROM usuarios INNER JOIN endereco ON usuarios.id_endereco = endereco.id_endereco WHERE usuarios.email = ?',
+        'SELECT usuarios.*, endereco.* FROM usuarios INNER JOIN endereco ON usuarios.id_endereco = endereco.id_endereco WHERE usuarios.email = ?',
         [email],
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Erro ao buscar dados do usuário', error: err });
@@ -180,39 +182,6 @@ app.get('/usuarios/email', (req, res) => {
         }
     );
 });
-
-
-
-
-// Atualizar dados do usuário
-app.put('/usuarios/email', (req, res) => {
-    const { email, nome, cpf, nascimento, telefone, cep, cidade, bairro, numero, complemento } = req.body;
-
-    if (!email) {
-        return res.status(400).json({ message: 'Email é obrigatório!' });
-    }
-
-    // Atualiza o endereço
-    db.query('UPDATE endereco SET cep = ?, cidade = ?, bairro = ?, numero = ?, complemento = ? WHERE cep = ?',
-        [cep, cidade, bairro, numero, complemento, cep], (err, enderecoResult) => {
-            if (err) {
-                console.error('Erro ao atualizar endereço:', err);
-                return res.status(500).json({ message: 'Erro ao atualizar endereço.' });
-            }
-
-            // Agora, atualiza o usuário
-            db.query('UPDATE usuarios SET nome = ?, cpf = ?, nascimento = ?, telefone = ?, email = ? WHERE email = ?',
-                [nome, cpf, nascimento, telefone, email, email], (err, userResult) => {
-                    if (err) {
-                        console.error('Erro ao atualizar usuário:', err);
-                        return res.status(500).json({ message: 'Erro ao atualizar usuário.' });
-                    }
-
-                    res.json({ message: 'Dados do usuário atualizados com sucesso!' });
-                });
-        });
-});
-
 
 
 

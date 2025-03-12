@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Detalhes do Animal</title>
+    <title>Adote um Amigo</title>
+    <link rel="stylesheet" href="styles/sobrenos.css">
+    <link rel="stylesheet" href="fonteLetras/fonte.css">
     <link rel="stylesheet" href="styles/perfil.css">
 </head>
 <body>
-
     <header>
         <div class="logo">
             <img src="img/dogo-argentino.png" alt="Logo da Adote um Amigo">
@@ -18,49 +18,46 @@
             <ul>
                 <li><a href="indexUsuario.html">Início</a></li>
                 <li><a href="sobrenosUsuario.html">Sobre</a></li>
+                
+
+                <label for="" style="color: rgb(250, 244, 244);">Olá, <label for="" id="nome-usuario">usuário</label></label>
                 <img src="img/user.png" alt="Usuário" class="user-icon rounded-circle" width="40" height="40">
+                
+                <!-- Modal do Usuário -->
                 <div id="userDropdown" class="user-modal">
                     <ul>
-                        <li><a href="#">Minha Conta</a></li>
-                        <li><a href="#">Detalhes da Conta</a></li>
+                        <li><a href="minhaConta.html">Minha Conta</a></li>
+
                         <li><a href="index.html">Sair</a></li>
                     </ul>
                 </div>
-            </ul>
+                
         </nav>
     </header>
 
-    <section id="detalhes-animal" class="container mt-5">
-        <h2 class="text-center mb-4">Detalhes do Animal</h2>
-        <div class="row">
-            <!-- Imagem e Informações do Animal -->
-            <div class="col-md-6 text-center">
-                <img src="img/img-animais-teste/gato22.jpg" alt="Cachorro para adoção" class="img-fluid rounded shadow">
-                <h3 class="mt-3">Jade</h3>
-                <p><strong>Raça:</strong> Ragdoll</p>
-                <p><strong>Peso:</strong> 2kg</p>
-                <p><strong>Cor:</strong> Branco e cinza com olhos azuis</p>
-                <p><strong>Idade:</strong> 5 anos</p>
-            </div>
 
-            <!-- Informações do Doador -->
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h3 class="card-title">Informações do Doador</h3>
-                        <p><strong>Nome:</strong> Ana Clara Mendes</p>
-                        <p><strong>Telefone:</strong> (21) 98765-4321</p>
-                        <p><strong>Email:</strong> ana.mendes@email.com</p>
-                    </div>
-                </div>
 
-                <!-- Botão de adoção -->
-                <div class="text-center mt-4">
-                    <button id="btn-adotar" class="btn btn-primary btn-lg w-100">
-                        <i class="fas fa-heart"></i> Quero Adotar
-                    </button>
-                </div>
+    
 
+    <section id="detalhes-animal">
+        <h2>Detalhes do Animal</h2>
+        <div class="animal-info">
+            <img src="img/img-animais-teste/gato22.jpg" alt="Cachorro para adoção">
+            <h3>Jade</h3>
+            <p><strong>Raça:</strong> Ragdoll</p>
+            <p><strong>Peso:</strong> 2kg</p>
+            <p><strong>Cor:</strong> Branco e cinza com olhos azuis</p>
+            <p><strong>Idade:</strong> 5</p>
+        </div>
+        
+        <div class="doador-info">
+            <h3>Informações do Doador</h3>
+            <p><strong>Nome:</strong> Ana Clara Mendes</p>
+            <p><strong>Telefone:</strong> (21) 98765-4321</p>
+            <p><strong>Email:</strong> ana.mendes@email.com</p>
+        </div>
+
+        <button id="btn-adotar" class="btn-adotar">Quero Adotar</button>
         <div id="success-message" class="success-message">
             <i class="fas fa-check-circle"></i>
             <span>Interesse manifestado com sucesso!</span>
@@ -72,17 +69,30 @@
         <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
     </footer>
 
+
+
+
+    <!-- botoes de evento on click -->
+     
+    
+
     <script>
-        document.getElementById("btn-adotar").addEventListener("click", function() {
-            const successMessage = document.getElementById("success-message");
-            successMessage.style.display = "flex"; // Exibe a mensagem
-            setTimeout(() => {
-                successMessage.style.opacity = "1"; // Torna a mensagem visível
-            }, 10);
-        });
+      document.getElementById("meuBotao").addEventListener("click", function() {
+        window.location.href = "Login.html";
+      });
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+  document.getElementById("meuBotao").addEventListener("click", function() {
+    window.location.href = "Cadastro.html";
+  });
+</script>
+
+
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -103,5 +113,21 @@
         });
     });
 </script>
+
+    
+
+
+<script>
+    document.getElementById("btn-adotar").addEventListener("click", function() {
+        const successMessage = document.getElementById("success-message");
+        successMessage.style.display = "flex"; // Exibe a mensagem
+        setTimeout(() => {
+            successMessage.style.opacity = "1"; // Torna a mensagem visível
+        }, 10);
+    });
+</script>
+
+
+
 </body>
 </html>
