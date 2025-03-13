@@ -28,7 +28,7 @@ Instruções detalhadas sobre como configurar o ambiente de desenvolvimento e ex
 
 1.  Clone o repositório: `git clone https://github.com/Ali2038/AdoteBemOriginal`
 2.  Inicie o npm: `npm init -y`
-3.  Instale as dependências: `npm install body-parse core mysql2`
+3.  Instale as dependências: `npm install body-parse core mysql2 express`
 
 ## Estrutura do Projeto
 
