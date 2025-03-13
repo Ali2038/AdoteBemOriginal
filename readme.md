@@ -17,8 +17,8 @@ Sistema dedicado à promoção da adoção responsável de animais de estimaçã
 ## Tecnologias Utilizadas
 
 * Linguagens de programação (Html, Css e JavaScript).
-* Frameworks (Boostrap).
-* Bibliotecas (Bootstrap).
+* Frameworks (Boostrap, node).
+* Bibliotecas (Bootstrap, node).
 * Ferramentas de desenvolvimento (Git).
 * Bancos de dados (MySQL).
 
@@ -26,9 +26,9 @@ Sistema dedicado à promoção da adoção responsável de animais de estimaçã
 
 Instruções detalhadas sobre como configurar o ambiente de desenvolvimento e executar o projeto. Inclua exemplos de comandos e capturas de tela, se necessário.
 
-1.  Clone o repositório: `git clone https://github.com/dolthub/dolt`
-2.  Instale as dependências: `npm install` ou `pip install -r requirements.txt`
-3.  Execute o projeto: `npm start` ou `python main.py`
+1.  Clone o repositório: `git clone https://github.com/Ali2038/AdoteBemOriginal`
+2.  Inicie o npm: `npm init -y`
+3.  Instale as dependências: `npm install body-parse core mysql2`
 
 ## Estrutura do Projeto
 
